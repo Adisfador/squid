@@ -18,5 +18,7 @@ Route::middleware("auth:admin")->group(function() {
 
     // Route::resource('admin_users', \App\Http\Controllers\Admin\AdminUserController::class);
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
+
+    Route::get('search', [\App\Http\Controllers\Admin\PostController::class, 'search'])->name('search');
 });
 

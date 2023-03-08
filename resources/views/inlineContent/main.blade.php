@@ -110,7 +110,7 @@
                         <a href="/news/{!! $el->newsType !!}/{!! $el->titleUrl !!}" class="economy__news">
                             <h3 class="economy__title">{!! $el->title !!}</h3>
                             <div class="economy__date">
-                                <span>{!! $el->newsType !!}</span>{!! $el->time !!}
+                                <span>{!! $el->newsType !!}</span>{!! date('d.m.Y H:i', strtotime($el->time)) !!}
                             </div>
                         </a>
                         <?php
@@ -134,7 +134,7 @@
                         <a href="/news/{!! $el->newsType !!}/{!! $el->titleUrl !!}" class="economy__news">
                             <h3 class="economy__title">{!! $el->title !!}</h3>
                             <div class="economy__date">
-                                <span>{!! $el->newsType !!}</span>{!! $el->time !!}
+                                <span>{!! $el->newsType !!}</span>{!! date('d.m.Y H:i', strtotime($el->time)) !!}
                             </div>
                         </a>
                         <?php

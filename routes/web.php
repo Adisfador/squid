@@ -28,7 +28,7 @@ use App\Http\Controllers\FeedbackController;
 Route::get('/', [MainController::class, 'home']);
 Route::get('/news/{NewsTheme}', [MainController::class, 'news']);
 Route::get('/news/{NewsTheme}/{NewsName}', [MainController::class, 'newsName']);
-Route::get('/{NewsTheme}', [MainController::class, 'newsM']);
+Route::get('/news', [MainController::class, 'newsM']);
 
 
 

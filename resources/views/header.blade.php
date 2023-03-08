@@ -26,7 +26,7 @@
                 </div>
 
                 <form action="{{asset("/search")}}" class="form" method="get">
-                    <input class="form__text" maxlength="50" minlength="1" autocomplete="off" name="text"
+                    <input value="{{ $filter ?? '' }}" class="form__text" maxlength="50" minlength="1" autocomplete="off" name="text"
                         type="text" placeholder="поиск...">
                     <input class="form__btn" type="submit" name="enter">
                 </form>

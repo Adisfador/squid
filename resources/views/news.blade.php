@@ -13,7 +13,8 @@
                 ?>
             <a href="/news/Новости" class="navigate__link">Новости</a>
             <span>/</span>
-            <div class="navigate__name">{{ $title }} </div>
+            {{-- <div class="navigate__name">{{ $title }} </div> --}}
+            <a href="/news/{{ $title }}" class="navigate__link">{{ $title }}</a>
             <?php
              }
             ?>
@@ -24,9 +25,9 @@
             @if (isset($data2))
 
             <div class="News-text__item">
-                {{-- {{$name}} --}}
+
                 <h1 class="News-text__title">{!! $data2[$data2->keys()[0]]->title !!} </h1>
-                <div class="News-text__top-date"><span>{!! $data2[$data2->keys()[0]]->newsType !!}</span>{!! $data2[$data2->keys()[0]]->time !!}</div>
+                <div class="News-text__top-date"><span>{!! $data2[$data2->keys()[0]]->newsType !!}</span>{!!date('d.m.Y H:i', strtotime($data2[$data2->keys()[0]]->time))  !!}</div>
                 <p class="News-text__top-text">{!! $data2[$data2->keys()[0]]->miniText !!}
                 </p>
                 <img src="{{ asset("/storage/" .$data2[$data2->keys()[0]]->mainImg) }}" alt="img" class="News-text__img">

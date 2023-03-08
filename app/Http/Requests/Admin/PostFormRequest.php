@@ -30,7 +30,7 @@ class PostFormRequest extends FormRequest
             "miniText" => ["required"],
             "mainText" => ["required"],
             "imgCheck" => ["required"],
-            "titleUrl" => ["required"],
+            // "titleUrl" => ["required"],
             "mainImg" => ["image"],
         ];
     }

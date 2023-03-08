@@ -24,15 +24,15 @@
                             <p class="admin__error">{{ $message }}</p>
                         @enderror
 
-                        <input name="titleUrl" type="text" placeholder="Главный Url"
+                        {{-- <input name="titleUrl" type="text" placeholder="Главный Url"
                             value="{{ $data->titleUrl ?? '' }}" />
 
                         @error('titleUrl')
                             <p class="admin__error">{{ $message }}</p>
-                        @enderror
+                        @enderror --}}
 
                         <input name="newsType" type="text" placeholder="Тип Новости"
-                            value="{{ $data->newsType ?? ' Новости/Политика/Экономика/Спорт/НаукаИтехно/Игры/Мир' }}" />
+                            value="{{ $data->newsType ?? ' Политика/Экономика/Спорт/НаукаИтехно/Игры/Мир' }}" />
 
                         @error('newsType')
                             <p class="admin__error">{{ $message }}</p>
@@ -45,54 +45,57 @@
                             <p class="admin__error">{{ $message }}</p>
                         @enderror
 
-                        <input name="time" type="text" placeholder="Время" value="{{ $data->time ?? '10:08, 17.02.2023' }}" />
+
+
+                        <input name="time" type="datetime-local"
+                            value="{{ isset($data->time) ? date('Y-m-d\TH:i', strtotime($data->time)) : '' }}"
+                            placeholder="Время" />
 
                         @error('time')
                             <p class="admin__error">{{ $message }}</p>
                         @enderror
 
-                        <textarea name="miniText" type="text" placeholder="Краткий текст"
-                             >{{ $data->miniText ?? '' }}</textarea>
+                        <textarea name="miniText" type="text" placeholder="Краткий текст">{{ $data->miniText ?? '' }}</textarea>
 
                         @error('miniText')
                             <p class="admin__error">{{ $message }}</p>
                         @enderror
 
-                        <textarea name="mainText" type="text" placeholder="Полный текст"
-                            >{{ $data->mainText ?? '<span class="News-text__img-subtitle">15 февраля в иеве будет небольшая облачность</span> <p class="News-text__text">Министр иностранных дел Украины Дмитрий Кулеба отменил поездку в
-                                Брюссель, где должна была <a href="/news/{newsType}/{newsUrl}" class="News-text__link">состояться встреча с
-                                европейскими министрами</a> иностранных дел перед
-                                заседанием Совета ЕС.
+                        <textarea id="textareas" class="contenteditable" name="mainText" type="text" placeholder="Полный текст"></textarea>
 
+                        <div class="text-decorate">
+                            <div class="text-decorate__wrapper">
+                                <a id="link" href="#">link</a>
+                                <a id="span" href="#">span</a>
+                                <a id="p" href="#">p</a>
+                                <a id="h4" href="#">h4</a>
+                                <a id="blockquote" href="#">blockquote</a>
+                                <a id="ul" href="#">ul</a>
+                                <a id="clear" href="#">clear</a>
+                            </div>
 
-                                <h4 class="News-text__min-title"> Боеприпасы для Украины</h4>
-
-                                <blockquote>
-                                <p class="News-text__text"> По мнению европейских чиновников и дипломатов, совместные действия Евросоюза
-                                будут более</p>
-
-                                </blockquote>
-                               <h4 class="News-text__min-title"> Вас также могут заинтересовать новости:</h4>
-                <ul>
-                    <li><a href="/news/{newsType}/{newsUrl}" class="News-text__link">Сигналы, которые были в Мюнхене, подтверждают, что
-                            Россия проигрывает войну - Зеленский</a></li>
-                    <li><a href="/news/{newsType}/{newsUrl}" class="News-text__link">Сигналы, которые были в Мюнхене, подтверждают, что
-                            Россия проигрывает войну - Зеленский</a></li>
-                    <li><a href="/news/{newsType}/{newsUrl}" class="News-text__link">Сигналы, которые были в Мюнхене, подтверждают, что
-                            Россия проигрывает войну - Зеленский</a></li>
-                </ul>' }}</textarea>
-
+                            <div id="texts" contenteditable="true" class="text-decorate__textarea-cont">
+                                {{ $data->mainText ??
+                                    '<img src="/storage/img/innerImg/" alt="img" class="News-text__img">
+                                <h4 class="News-text__min-title"> Вас также могут заинтересовать новости:</h4>' }}
+                            </div>
+                        </div>
                         @error('mainText')
                             <p class="admin__error">{{ $message }}</p>
                         @enderror
 
+                        <label style="display:block;" class="admin-create__input-file">
+                            <input type="file" multiple name="Img[]">
+                            <span class="admin-create__input-file-btn">Выберите файлы</span>
+                            <span class="admin-create__input-file-text">Файлы не выбраны</span>
+                        </label>
                         @if (isset($data) && $data->mainImg)
                             <div>
-                                <img  src="{{ asset('/storage/' . $data->mainImg) }}">
+                                <img src="{{ asset('/storage/' . $data->mainImg) }}">
                             </div>
                         @endif
 
-                        {{-- <input name="mainImg" type="file" class="w-full h-12" placeholder="Обложка" /> --}}
+
 
                         <label class="admin-create__input-file">
                             <input type="file" name="mainImg">

@@ -74,13 +74,24 @@
                if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
                    page++;
                    if ($("#Ns").hasClass("Ns--active")) {
-                    loadMoreData(page, ".news-column__content", "http://squid/inlineContent/news_column1");
+                       loadMoreData(page, ".news-column__content", "http://squid/inlineContent/news_column1");
                    } else {
-                    loadMoreData(page, ".news-column__content", "http://squid/inlineContent/news_column2");
+                       loadMoreData(page, ".news-column__content", "http://squid/inlineContent/news_column2");
                    }
 
                }
            })
+       }
+
+       if (typeof c !== 'undefined') {
+           // footer
+           var contactsH = $("#footer").offset().top,
+               scrollOffset = $(window).height(),
+               footerheight = $("#footer").height();
+
+           if (scrollOffset > contactsH + footerheight) {
+               $("#footer").toggleClass("footer-down");
+           }
        }
    </script>
 

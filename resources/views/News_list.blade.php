@@ -20,7 +20,7 @@
                 <a href="/news/{!! $el->newsType !!}/{!! $el->titleUrl !!}" class="main-order__item">
 
                     <div class="main-order__top-title">{!! $el->title !!}</div>
-                    <div class="main-order__top-date"><span>{!! $el->newsType !!}</span>{!! $el->time !!} </div>
+                    <div class="main-order__top-date"><span>{!! $el->newsType !!}</span>{!! date('d.m.Y H:i', strtotime($el->time)) !!} </div>
                     <img src="{{ asset("/storage/" .$el->mainImg) }}" alt="img" class="main-order__img">
                 </a>
                 <?php

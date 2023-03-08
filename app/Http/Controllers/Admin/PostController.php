@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\NewsModel;
 use App\Http\Requests\Admin\PostFormRequest;
-
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -17,8 +17,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = NewsModel::where("newsType", "Политика")->orderBy('id', 'DESC')->paginate(8);
-        return view("admin.posts.index" , compact("data"));
+        $data = NewsModel::orderBy('time', 'DESC')->paginate(8);
+        return view("admin.posts.index", compact("data"));
     }
 
     /**
@@ -41,14 +41,21 @@ class PostController extends Controller
     {
 
 
-        $chek=$request->validated();
-        if($request->has("mainImg")){
-            $mainImg=str_replace("public/img","",$request->file("mainImg")->store("public/img")) ;
 
-            $chek["mainImg"]="img" . $mainImg;
+
+        $chek = $request->validated();
+        foreach ($request->file("Img") as $file) {
+            $file->storeAs("public/img/innerImg", $file->getClientOriginalName());
         }
 
-        NewsModel::create( $chek);
+        if ($request->has("mainImg")) {
+            $mainImg = str_replace("public/img", "", $request->file("mainImg")->storeAs("public/img", $request["mainImg"]->getClientOriginalName()));
+
+            $chek["mainImg"] = "img" . $mainImg;
+        }
+        $chek["titleUrl"] = Str::slug($chek["title"], '_');
+
+        NewsModel::create($chek);
         return redirect(route("admin.posts.index"));
     }
 
@@ -75,9 +82,9 @@ class PostController extends Controller
     //         "data" => $data,
     //     ]);
     // }
-    public function edit( $id)
+    public function edit($id)
     {
-        $data=NewsModel::find($id);
+        $data = NewsModel::find($id);
         return view("admin.posts.create", [
             "data" => $data,
         ]);
@@ -92,14 +99,21 @@ class PostController extends Controller
      */
     public function update(PostFormRequest $request, $id)
     {
-        $data=NewsModel::find($id);
+        $data = NewsModel::find($id);
 
-        $chek=$request->validated();
-        if($request->has("mainImg")){
-            $mainImg=str_replace("public/img","",$request->file("mainImg")->store("public/img")) ;
 
-            $chek["mainImg"]="img" . $mainImg;
+        $chek = $request->validated();
+        foreach ($request->file("Img") as $file) {
+            $file->storeAs("public/img/innerImg", $file->getClientOriginalName());
         }
+        if ($request->has("mainImg")) {
+
+            $mainImg = str_replace("public/img", "", $request->file("mainImg")->storeAs("public/img", str_replace("img/", "", $data["mainImg"])));
+
+            $chek["mainImg"] = "img" . $mainImg;
+        }
+        $chek["titleUrl"] = Str::slug($chek["title"], '_');
+
         $data->update($chek);
 
         return redirect(route("admin.posts.index"));
@@ -116,5 +130,14 @@ class PostController extends Controller
         $post->delete();
 
         return redirect(route("admin.posts.index"));
+    }
+
+    public function search(Request $request)
+    {
+        $filter = $request->text;
+
+        $data = NewsModel::where("title", 'LIKE', '%' . $filter . '%')->orderBy('time', 'DESC')->paginate(10);
+
+        return view("admin.adminSearch", ['data' => $data, 'filter' => $filter]);
     }
 }

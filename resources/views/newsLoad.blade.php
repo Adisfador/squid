@@ -4,7 +4,7 @@
         <div class="News-text__item">
             {{-- {{$name}} --}}
             <h1 class="News-text__title">{!! $el->title !!} </h1>
-            <div class="News-text__top-date"><span>{!! $el->newsType !!}</span>{!! $el->time !!}</div>
+            <div class="News-text__top-date"><span>{!! $el->newsType !!}</span>{!! date('d.m.Y H:i', strtotime($el->time)) !!}</div>
             <p class="News-text__top-text">{!! $el->miniText !!}
             </p>
             <img src="{{ asset("/storage/" .$el->mainImg) }}" alt="img" class="News-text__img">
