@@ -38,10 +38,14 @@
        var page = 1;
        var selectors
        if ($("#post-data ").length) {
+        if ($(".News-text__item").length) {
+                   page = 0;
+               }
            $(window).scroll(function() {
 
                if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
                    page++;
+
                    loadMoreData(page, "#post-data", "");
                }
            })
@@ -63,7 +67,7 @@
                    $(selectors).append(data.html);
                })
                .fail(function(jqXHR, ajaxOptions, thrownError) {
-                   alert("server not responding kok")
+                   alert("server not responding")
                })
        }
 

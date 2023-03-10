@@ -44,9 +44,14 @@ class PostController extends Controller
 
 
         $chek = $request->validated();
-        foreach ($request->file("Img") as $file) {
-            $file->storeAs("public/img/innerImg", $file->getClientOriginalName());
+        if (null !== $request->file("Img")) {
+            foreach ($request->file("Img") as $file) {
+                $file->storeAs("public/img/innerImg", $file->getClientOriginalName());
+            }
+
         }
+
+
 
         if ($request->has("mainImg")) {
             $mainImg = str_replace("public/img", "", $request->file("mainImg")->storeAs("public/img", $request["mainImg"]->getClientOriginalName()));
@@ -103,8 +108,11 @@ class PostController extends Controller
 
 
         $chek = $request->validated();
-        foreach ($request->file("Img") as $file) {
-            $file->storeAs("public/img/innerImg", $file->getClientOriginalName());
+        if (null !== $request->file("Img")) {
+            foreach ($request->file("Img") as $file) {
+                $file->storeAs("public/img/innerImg", $file->getClientOriginalName());
+            }
+
         }
         if ($request->has("mainImg")) {
 

@@ -120,6 +120,13 @@
                 document.querySelector("#texts").innerText = ""
             });
 
+            $("#img").on("click", function(event) {
+                event.preventDefault();
+                var sText = document.getSelection();
+                document.execCommand('insertHTML', false, '<img src="/storage/img/innerImg/' + sText +' " alt="img" class="News-text__img">');
+
+            });
+
 
             document.querySelector("#textareas").innerText = document.querySelector("#texts").innerHTML
 
@@ -129,6 +136,11 @@
 
                 document.querySelector("#textareas").innerText = document.querySelector("#texts").innerHTML
 
+            });
+            document.querySelector('div[contenteditable="true"]').addEventListener("paste", function(e) {
+                e.preventDefault();
+                var text = e.clipboardData.getData("text/plain");
+                document.execCommand("insertHTML", false, text);
             });
         }
     </script>

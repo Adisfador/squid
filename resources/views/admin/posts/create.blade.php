@@ -71,13 +71,14 @@
                                 <a id="h4" href="#">h4</a>
                                 <a id="blockquote" href="#">blockquote</a>
                                 <a id="ul" href="#">ul</a>
+                                <a id="img" href="#">img</a>
                                 <a id="clear" href="#">clear</a>
                             </div>
 
                             <div id="texts" contenteditable="true" class="text-decorate__textarea-cont">
-                                {{ $data->mainText ??
-                                    '<img src="/storage/img/innerImg/" alt="img" class="News-text__img">
-                                <h4 class="News-text__min-title"> Вас также могут заинтересовать новости:</h4>' }}
+                                {!! $data->mainText ??
+                                    '
+                                    Вас также могут заинтересовать новости:' !!}
                             </div>
                         </div>
                         @error('mainText')

@@ -18,7 +18,7 @@
                 @endif
                 <a href="/news/{!! $el->newsType !!}/{!! $el->titleUrl !!}" class="daily-news__item">
                     <div class="daily-news__top-title">{!! $el->title !!}</div>
-                    <div class="daily-news__top-date"><span>{!! $el->newsType !!}</span>{!! $el->time !!}</div>
+                    <div class="daily-news__top-date"><span>{!! $el->newsType !!}</span>{!! date('d.m.Y H:i', strtotime($el->time)) !!}</div>
                     <img src="{{ asset("/storage/" . $el->mainImg) }}" alt="img" class="daily-news__img">
                 </a>
                 <?php
@@ -41,7 +41,7 @@
                 <a href="/news/{!! $el->newsType !!}/{!! $el->titleUrl !!}" class="daily-news__item">
                     <div class="daily-news__top-title">{!! $el->title !!}</div>
                     <div class="daily-news__top-date">
-                        <span>{!! $el->newsType !!}</span>{!! $el->time !!}
+                        <span>{!! $el->newsType !!}</span>{!! date('d.m.Y H:i', strtotime($el->time)) !!}
                     </div>
                     <img src="{{ asset("/storage/" .$el->mainImg) }}" alt="img" class="daily-news__img">
                 </a>
@@ -67,7 +67,7 @@
                 <a href="/news/{!! $el->newsType !!}/{!! $el->titleUrl !!}" class="daily-news__item">
                     <div class="daily-news__top-title">{!! $el->title !!}</div>
                     <div class="daily-news__top-date">
-                        <span>{!! $el->newsType !!}</span>{!! $el->time !!}
+                        <span>{!! $el->newsType !!}</span>{!! date('d.m.Y H:i', strtotime($el->time)) !!}
                     </div>
                     <img src="{{ asset("/storage/" .$el->mainImg) }}" alt="img" class="daily-news__img">
                 </a>
@@ -88,7 +88,7 @@
                 <a href="/news/{!! $dataEconomy[$dataEconomy->keys()[0]]->newsType !!}/{!! $dataEconomy[$dataEconomy->keys()[0]]->titleUrl !!}" class="economy__main-news">
                     <h3 class="economy__title">{!! $dataEconomy[$dataEconomy->keys()[0]]->title !!}</h3>
                     <div class="economy__date">
-                        <span>{!! $dataEconomy[$dataEconomy->keys()[0]]->newsType !!}</span>{!! $dataEconomy[$dataEconomy->keys()[0]]->time !!}
+                        <span>{!! $dataEconomy[$dataEconomy->keys()[0]]->newsType !!}</span> {!! date('d.m.Y H:i', strtotime($dataEconomy[$dataEconomy->keys()[0]]->time)) !!}
                     </div>
                 </a>
                 <?php
@@ -165,7 +165,7 @@
                 <a href="/news/{!! $el->newsType !!}/{!! $el->titleUrl !!}" class="sport__item">
                     <img src="{{ asset("/storage/" .$el->mainImg) }}" alt="img" class="sport__img">
                     <div class="sport__date">
-                        <span>{!! $el->newsType !!}</span>{!! $el->time !!}
+                        <span>{!! $el->newsType !!}</span>{!! date('d.m.Y H:i', strtotime($el->time)) !!}
                     </div>
                     <h3 class="sport__title">{!! $el->title !!}</h3>
                     <p class="sport__text">
@@ -199,7 +199,7 @@
                 <a href="/news/{!! $el->newsType !!}/{!! $el->titleUrl !!}" class="science__item">
                     <img src="{{ asset("/storage/" .$el->mainImg) }}" alt="img" class="science__img">
                     <div class="science__date">
-                        <span>Наука и техно</span>{!! $el->time !!}
+                        <span>Наука и техно</span>{!! date('d.m.Y H:i', strtotime($el->time)) !!}
                     </div>
                     <h3 class="science__title">{!! $el->title !!}</h3>
                 </a>
@@ -230,7 +230,7 @@
                 <a href="/news/{!! $el->newsType !!}/{!! $el->titleUrl !!}" class="games__item">
                     <img src="{{ asset("/storage/" .$el->mainImg) }}" alt="img" class="games__img">
                     <div class="games__date">
-                        <span>{!! $el->newsType !!}</span>{!! $el->time !!}
+                        <span>{!! $el->newsType !!}</span>{!! date('d.m.Y H:i', strtotime($el->time)) !!}
                     </div>
                     <h3 class="games__title">
                         {!! $el->title !!}</h3>
@@ -253,7 +253,7 @@
                 <a href="/news/{!! $dataWorld[$dataWorld->keys()[0]]->newsType !!}/{!! $dataWorld[$dataWorld->keys()[0]]->titleUrl !!}" class="economy__main-news">
                     <h3 class="economy__title">{!! $dataWorld[$dataWorld->keys()[0]]->title !!}</h3>
                     <div class="economy__date">
-                        <span>{!! $dataWorld[$dataWorld->keys()[0]]->newsType !!}</span>{!! $dataWorld[$dataWorld->keys()[0]]->time !!}
+                        <span>{!! $dataWorld[$dataWorld->keys()[0]]->newsType !!}</span> {!! date('d.m.Y H:i', strtotime($dataWorld[$dataWorld->keys()[0]]->time)) !!}
                     </div>
                 </a>
                 <?php
@@ -275,7 +275,7 @@
                         <a href="/news/{!! $el->newsType !!}/{!! $el->titleUrl !!}" class="economy__news">
                             <h3 class="economy__title">{!! $el->title !!}</h3>
                             <div class="economy__date">
-                                <span>{!! $el->newsType !!}</span>{!! $el->time !!}
+                                <span>{!! $el->newsType !!}</span>{!! date('d.m.Y H:i', strtotime($el->time)) !!}
                             </div>
                         </a>
                         <?php
@@ -299,7 +299,7 @@
                         <a href="/news/{!! $el->newsType !!}/{!! $el->titleUrl !!}" class="economy__news">
                             <h3 class="economy__title">{!! $el->title !!}</h3>
                             <div class="economy__date">
-                                <span>{!! $el->newsType !!}</span>{!! $el->time !!}
+                                <span>{!! $el->newsType !!}</span>{!! date('d.m.Y H:i', strtotime($el->time)) !!}
                             </div>
                         </a>
                         <?php
